@@ -4,8 +4,6 @@
 <Details>
 <Summary>Drawable Download to Storage.</Summary>
 
-#### - Code...
-
 ```java
   try {
     Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_round);
@@ -20,4 +18,36 @@
   }
 ```
 
+</Details>
+
+  
+<Details>
+<Summary>Raw files Download to Storage.</Summary>
+  
+- rawId = R.raw.your_raw_file_name;
+- destinationFile = where you store the raw file...
+  
+```java
+            InputStream in = null;
+            FileOutputStream fout = null;
+            try {
+                in = activity.getResources().openRawResource(rawId);
+                fout = new FileOutputStream(destinationFile);
+
+                final byte data[] = new byte[1024];
+                int count;
+                while ((count = in.read(data, 0, 1024)) != -1) {
+                    fout.write(data, 0, count);
+                }
+                if (in != null) {
+                    in.close();
+                }
+                if (fout != null) {
+                    fout.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+```
+  
 <Details>
